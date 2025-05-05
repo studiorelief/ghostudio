@@ -40,8 +40,8 @@ export function cardAppear() {
         scrollTrigger: {
           markers: false,
           trigger: element,
-          start: 'top bottom',
-          end: 'top 75%',
+          start: 'top 85%',
+          end: 'top 55%',
           scrub: 1,
         },
         stagger: 0.5,

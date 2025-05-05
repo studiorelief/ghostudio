@@ -28,7 +28,7 @@ export function mainBackground(targetSelector = '.section_background') {
     if (!el) return;
 
     ScrollTrigger.create({
-      markers: true,
+      markers: false,
       trigger: el,
       start: 'top 75%',
       end: 'bottom 75%',
