@@ -10,8 +10,25 @@ export function cardAppear() {
     gsap.fromTo(
       element,
       {
-        y: '3rem',
-        opacity: 0,
+        y: '6rem',
+      },
+      {
+        y: '0rem',
+        ease: 'power2.out',
+        scrollTrigger: {
+          markers: false,
+          trigger: element,
+          start: 'top 85%',
+          end: 'top 100%',
+          scrub: 1,
+        },
+      }
+    );
+    gsap.fromTo(
+      element,
+      {
+        // y: '6rem',
+        opacity: 1,
         rotateX: () => {
           if (
             (element as HTMLElement).classList.contains('is-portrait') ||
@@ -19,7 +36,7 @@ export function cardAppear() {
           ) {
             return '22.5deg';
           }
-          return '45deg';
+          return '-45deg';
         },
         transformPerspective: () => {
           if (
@@ -32,7 +49,7 @@ export function cardAppear() {
         },
       },
       {
-        y: '0rem',
+        // y: '0rem',
         opacity: 1,
         rotateX: '0deg',
         duration: 1,
@@ -40,8 +57,8 @@ export function cardAppear() {
         scrollTrigger: {
           markers: false,
           trigger: element,
-          start: 'top 85%',
-          end: 'top 55%',
+          start: 'top 95%',
+          end: 'top 65%',
           scrub: 1,
         },
         stagger: 0.5,
