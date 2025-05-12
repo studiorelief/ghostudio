@@ -1,4 +1,12 @@
+@import './utils/animations/swiper/swiper-scale-fade.css';
+
 model-viewer {
   --poster-color: transparent;
   --progress-bar-color: transparent;
+}
+
+@media screen and (min-width: 1440px) {
+  .project_pantone-text {
+    font-size: 2rem;
+  }
 }

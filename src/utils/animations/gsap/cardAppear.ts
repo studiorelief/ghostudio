@@ -3,6 +3,10 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
+/*
+  ! TO DO : Coupler scroll y avec rotation
+   */
+
 export function cardAppear() {
   const elements = document.querySelectorAll('.project_cell');
 
@@ -15,11 +19,12 @@ export function cardAppear() {
       {
         y: '0rem',
         ease: 'power2.out',
+        duration: 2,
         scrollTrigger: {
           markers: false,
           trigger: element,
-          start: 'top 85%',
-          end: 'top 100%',
+          start: 'top 95%',
+          end: 'top 65%',
           scrub: 1,
         },
       }
@@ -52,7 +57,7 @@ export function cardAppear() {
         // y: '0rem',
         opacity: 1,
         rotateX: '0deg',
-        duration: 1,
+        duration: 2,
         ease: 'power2.out',
         scrollTrigger: {
           markers: false,
