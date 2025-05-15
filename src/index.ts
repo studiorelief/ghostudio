@@ -1,9 +1,12 @@
 import './index.css';
 
+import { levitate } from '$utils/animations/element/levitate';
+import { initPreloaderAnimation } from '$utils/animations/element/preloader';
 import { scaleUp } from '$utils/animations/element/scaleUp';
 import { slideUp } from '$utils/animations/element/slideUp';
 import { cardAppear } from '$utils/animations/gsap/cardAppear';
 import { ghostAnimation } from '$utils/animations/gsap/ghostAnimation';
+import { haloRotate } from '$utils/animations/gsap/haloRotate';
 import { logoAppear } from '$utils/animations/gsap/logoAppear';
 import { mainBackground } from '$utils/animations/gsap/mainBackground';
 import { typeEffect } from '$utils/animations/gsap/typeEffect';
@@ -29,6 +32,9 @@ window.Webflow.push(() => {
   ! Animations 
   */
 
+  /* loader */
+  initPreloaderAnimation();
+
   /* global */
   cardAppear();
   mainBackground();
@@ -49,4 +55,6 @@ window.Webflow.push(() => {
   /* element */
   slideUp();
   scaleUp();
+  haloRotate();
+  levitate();
 });
