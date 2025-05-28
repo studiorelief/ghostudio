@@ -14,60 +14,63 @@ export function cardAppear() {
     gsap.fromTo(
       element,
       {
-        y: '6rem',
+        y: '24rem',
       },
       {
         y: '0rem',
         ease: 'power2.out',
         duration: 2,
         scrollTrigger: {
-          markers: false,
+          markers: true,
           trigger: element,
-          start: 'top 95%',
-          end: 'top 65%',
+          start: 'top 100%',
+          end: 'top 75%',
           scrub: 1,
         },
-      }
-    );
-    gsap.fromTo(
-      element,
-      {
-        // y: '6rem',
-        opacity: 1,
-        rotateX: () => {
-          if (
-            (element as HTMLElement).classList.contains('is-portrait') ||
-            (element as HTMLElement).classList.contains('is-square-big')
-          ) {
-            return '22.5deg';
-          }
-          return '-45deg';
-        },
-        transformPerspective: () => {
-          if (
-            (element as HTMLElement).classList.contains('is-portrait') ||
-            (element as HTMLElement).classList.contains('is-square-big')
-          ) {
-            return 2000;
-          }
-          return 1000;
-        },
-      },
-      {
-        // y: '0rem',
-        opacity: 1,
-        rotateX: '0deg',
-        duration: 2,
-        ease: 'power2.out',
-        scrollTrigger: {
-          markers: false,
-          trigger: element,
-          start: 'top 95%',
-          end: 'top 65%',
-          scrub: 1,
-        },
-        stagger: 0.5,
       }
     );
   });
 }
+
+//   gsap.fromTo(
+//     element,
+//     {
+//       // y: '6rem',
+//       opacity: 1,
+//       rotateX: () => {
+//         if (
+//           (element as HTMLElement).classList.contains('is-portrait') ||
+//           (element as HTMLElement).classList.contains('is-square-big')
+//         ) {
+//           return '11.25deg';
+//         }
+//         return '-45deg';
+//       },
+//       transformPerspective: () => {
+//         if (
+//           (element as HTMLElement).classList.contains('is-portrait') ||
+//           (element as HTMLElement).classList.contains('is-square-big')
+//         ) {
+//           return 2000;
+//         }
+//         return 1000;
+//       },
+//     },
+//     {
+//       // y: '0rem',
+//       opacity: 1,
+//       rotateX: '0deg',
+//       duration: 2,
+//       ease: 'power2.out',
+//       scrollTrigger: {
+//         markers: false,
+//         trigger: element,
+//         start: 'top 75%',
+//         end: 'top 45%',
+//         scrub: 1,
+//       },
+//       // stagger: 0.5,
+//     }
+//   );
+// });
+// }

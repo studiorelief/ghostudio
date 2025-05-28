@@ -40,7 +40,7 @@ export function mainBackground(targetSelector = '.section_background') {
   function animateBg(bg: string) {
     gsap.to(target, {
       background: bg,
-      duration: 0.5,
+      duration: 1,
       ease: 'power2.inOut',
     });
   }
