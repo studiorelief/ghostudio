@@ -5,6 +5,7 @@ import { initPreloaderAnimation } from '$utils/animations/element/preloader';
 import { scaleUp } from '$utils/animations/element/scaleUp';
 import { slideUp } from '$utils/animations/element/slideUp';
 import { cardAppear } from '$utils/animations/gsap/cardAppear';
+import { initFooterGhostAnimation } from '$utils/animations/gsap/footerGhost';
 import { ghostAnimation } from '$utils/animations/gsap/ghostAnimation';
 import { haloRotate } from '$utils/animations/gsap/haloRotate';
 import { logoAppear } from '$utils/animations/gsap/logoAppear';
@@ -38,6 +39,7 @@ window.Webflow.push(() => {
   /* global */
   cardAppear();
   mainBackground();
+  initFooterGhostAnimation();
 
   /* swiper */
   swiperRotation();

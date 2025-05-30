@@ -18,8 +18,8 @@ export function slideUp() {
       ease: 'power2.out',
       scrollTrigger: {
         trigger: element,
-        start: 'top 75%',
-        end: 'top 50%',
+        start: 'top 100%',
+        end: 'top 75%',
         scrub: 1,
         markers: false,
       },

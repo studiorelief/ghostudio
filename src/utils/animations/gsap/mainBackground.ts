@@ -17,6 +17,7 @@ const sections: SectionConfig[] = [
   { selector: '.section_project.is-popconn', background: '#FFFFFF' },
   { selector: '.section_project.is-waldos', background: '#1F004C' },
   { selector: '.section_project.is-experquiz', background: '#F1F1F1' },
+  { selector: '.section_footer', background: '#0D0D0D' },
 ];
 
 export function mainBackground(targetSelector = '.section_background') {

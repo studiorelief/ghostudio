@@ -1,6 +1,6 @@
 @import './utils/animations/swiper/swiper-scale-fade.css';
-
-model-viewer {
+@import './utils/animations/element/button.css';
+s model-viewer {
   --poster-color: transparent;
   --progress-bar-color: transparent;
 }

@@ -1,0 +1,22 @@
+.button-gradient {
+  /* border-radius: var(--border-radius--radius-round);  */
+  border: 1.5px solid transparent; /*2*/
+  background: conic-gradient(
+      from 20deg,
+      #565656,
+      #c8c8c8,
+      #ff8e1c,
+      #e11dff,
+      #c8c8c8,
+      #565656 /* #565656 */
+    )
+    border-box; /*3*/
+  -webkit-mask: /*4*/
+    linear-gradient(#fff 0 0) padding-box,
+    linear-gradient(#fff 0 0);
+  mask: /*4*/
+    linear-gradient(#fff 0 0) padding-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}

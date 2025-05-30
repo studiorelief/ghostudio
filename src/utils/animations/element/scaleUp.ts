@@ -17,8 +17,8 @@ export function scaleUp() {
       ease: 'power2.out',
       scrollTrigger: {
         trigger: element,
-        start: 'top 75%',
-        end: 'top 50%',
+        start: 'top 100%',
+        end: 'top 75%',
         markers: false,
         scrub: 1,
       },
