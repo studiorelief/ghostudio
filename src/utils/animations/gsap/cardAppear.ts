@@ -21,7 +21,7 @@ export function cardAppear() {
         ease: 'power2.out',
         duration: 2,
         scrollTrigger: {
-          markers: true,
+          markers: false,
           trigger: element,
           start: 'top 100%',
           end: 'top 75%',

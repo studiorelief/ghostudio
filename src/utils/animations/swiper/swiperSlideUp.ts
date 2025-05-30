@@ -11,10 +11,10 @@ export function swiperSlideUp() {
       direction: 'vertical',
       //   autoHeight: true,
       grabCursor: true,
-      mousewheel: {
-        forceToAxis: true,
-        sensitivity: 1,
-      },
+      // mousewheel: {
+      //   forceToAxis: true,
+      //   sensitivity: 1,
+      // },
       keyboard: {
         enabled: true,
         onlyInViewport: true,
