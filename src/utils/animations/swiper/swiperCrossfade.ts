@@ -10,10 +10,10 @@ export function swiperCrossfade() {
       speed: 750, // rotation duration 0.5s
       loop: true,
       grabCursor: true,
-      mousewheel: {
-        forceToAxis: true,
-        sensitivity: 1,
-      },
+      // mousewheel: {
+      //   forceToAxis: true,
+      //   sensitivity: 1,
+      // },
       keyboard: {
         enabled: true,
         onlyInViewport: true,

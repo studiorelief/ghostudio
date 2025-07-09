@@ -19,6 +19,7 @@ import { swiperSlideRight } from '$utils/animations/swiper/swiperSlideRight';
 import { swiperSlideUp } from '$utils/animations/swiper/swiperSlideUp';
 import { initMarker } from '$utils/global/marker';
 import { loadModelViewerScript, resetPosition } from '$utils/global/modalviewers';
+import { popupContact } from '$utils/global/popupContact';
 
 window.Webflow ||= [];
 window.Webflow.push(() => {
@@ -40,6 +41,7 @@ window.Webflow.push(() => {
   cardAppear();
   mainBackground();
   initFooterGhostAnimation();
+  popupContact();
 
   /* swiper */
   swiperRotation();

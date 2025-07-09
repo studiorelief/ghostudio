@@ -13,10 +13,10 @@ export function swiperScaleFade() {
       speed: 750, // transition duration 0.75s
       loop: true,
       grabCursor: true,
-      mousewheel: {
-        forceToAxis: true,
-        sensitivity: 1,
-      },
+      // mousewheel: {
+      //   forceToAxis: true,
+      //   sensitivity: 1,
+      // },
       keyboard: {
         enabled: true,
         onlyInViewport: true,
