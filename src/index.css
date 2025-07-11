@@ -13,9 +13,9 @@ s model-viewer {
 
 /* popup contact */
 .form_radio.w-radio:has(.w-form-formradioinput.w--redirected-checked) {
-  outline: 2px solid rgba(255, 255, 255, 0.2);
+  outline: 2px solid #ccc;
 }
 
 .w-checkbox.form_radio:has(.w-checkbox-input.w--redirected-checked) {
-  outline: 2px solid rgba(255, 255, 255, 0.2);
+  outline: 2px solid #ccc;
 }
