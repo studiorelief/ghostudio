@@ -20,3 +20,43 @@
   -webkit-mask-composite: xor;
   mask-composite: exclude;
 }
+
+/* Button Home - Connect */
+
+@media screen and (min-width: 991px) {
+  .home_button-connect_icon-bg-wrapper {
+    pointer-events: none;
+    position: absolute;
+    left: 1.5rem;
+    transition: transform 0.3s ease-out;
+  }
+
+  .home_button-connect:hover .home_button-connect_icon-bg-wrapper {
+    /* margin-left: calc(100% + 0.75rem); */
+    pointer-events: none;
+    transform: translateX(calc(50% + 1.5rem));
+    transition: transform 0.3s ease-out;
+    position: absolute;
+    left: auto;
+    /* right: 0.75rem; */
+  }
+
+  .home_button-connect_text {
+    pointer-events: none;
+    transition: transform 0.3s ease-out;
+  }
+
+  .home_button-connect:hover .home_button-connect_text {
+    pointer-events: none;
+    transform: translateX(calc(-75% + 0.75rem));
+    transition: transform 0.3s ease-out;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .home_button-connect_icon-bg-wrapper {
+    pointer-events: none;
+    position: relative;
+    transform: translateX(-0rem);
+  }
+}

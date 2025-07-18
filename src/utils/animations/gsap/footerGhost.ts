@@ -37,7 +37,7 @@ function animateWrapperLevitation(): void {
  * Create crossfade animation between ghosts
  */
 function animateGhostCrossfade(): void {
-  const numberOfGhosts = 9;
+  const numberOfGhosts = 5;
   const interval = 1.5; // 1.5s between each ghost
 
   // Set all ghosts invisible initially
@@ -59,7 +59,7 @@ function animateGhostCrossfade(): void {
       [currentGhost, nextGhost],
       {
         opacity: (index) => (index === 0 ? 0 : 1), // Fade out current, fade in next
-        duration: 0.5,
+        duration: 1.5,
         ease: 'power2.inOut',
       },
       i * interval
