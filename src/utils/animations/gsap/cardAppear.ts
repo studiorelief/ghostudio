@@ -3,74 +3,61 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-/*
-  ! TO DO : Coupler scroll y avec rotation
-   */
-
 export function cardAppear() {
-  const elements = document.querySelectorAll('.project_cell');
+  const projectCells = document.querySelectorAll('.project_cell');
 
-  elements.forEach((element) => {
+  if (!projectCells.length) return;
+
+  // Grouper les cartes par position Y (même ligne)
+  const rowGroups: Element[][] = [];
+  let currentRow: Element[] = [];
+  let currentTop = -1;
+
+  projectCells.forEach((cell) => {
+    const rect = cell.getBoundingClientRect();
+    const top = Math.round(rect.top);
+
+    if (currentTop === -1 || Math.abs(top - currentTop) < 10) {
+      // Même ligne (tolérance de 10px)
+      currentRow.push(cell);
+      currentTop = top;
+    } else {
+      // Nouvelle ligne
+      if (currentRow.length > 0) {
+        rowGroups.push([...currentRow]);
+      }
+      currentRow = [cell];
+      currentTop = top;
+    }
+  });
+
+  // Ajouter la dernière ligne
+  if (currentRow.length > 0) {
+    rowGroups.push(currentRow);
+  }
+
+  // Animer chaque ligne séparément
+  rowGroups.forEach((rowCells) => {
     gsap.fromTo(
-      element,
+      rowCells,
       {
         y: '24rem',
+        opacity: 0,
       },
       {
         y: '0rem',
+        opacity: 1,
+        duration: 1,
         ease: 'power2.out',
-        duration: 2,
+        stagger: 0.2,
         scrollTrigger: {
+          trigger: rowCells[0], // Premier élément de la ligne comme trigger
+          start: '0% 100%',
+          end: '100% 75%',
           markers: false,
-          trigger: element,
-          start: 'top 100%',
-          end: 'top 75%',
-          scrub: 1,
+          toggleActions: 'play none none reverse',
         },
       }
     );
   });
 }
-
-//   gsap.fromTo(
-//     element,
-//     {
-//       // y: '6rem',
-//       opacity: 1,
-//       rotateX: () => {
-//         if (
-//           (element as HTMLElement).classList.contains('is-portrait') ||
-//           (element as HTMLElement).classList.contains('is-square-big')
-//         ) {
-//           return '11.25deg';
-//         }
-//         return '-45deg';
-//       },
-//       transformPerspective: () => {
-//         if (
-//           (element as HTMLElement).classList.contains('is-portrait') ||
-//           (element as HTMLElement).classList.contains('is-square-big')
-//         ) {
-//           return 2000;
-//         }
-//         return 1000;
-//       },
-//     },
-//     {
-//       // y: '0rem',
-//       opacity: 1,
-//       rotateX: '0deg',
-//       duration: 2,
-//       ease: 'power2.out',
-//       scrollTrigger: {
-//         markers: false,
-//         trigger: element,
-//         start: 'top 75%',
-//         end: 'top 45%',
-//         scrub: 1,
-//       },
-//       // stagger: 0.5,
-//     }
-//   );
-// });
-// }
