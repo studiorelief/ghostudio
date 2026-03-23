@@ -1,62 +1,38 @@
-/* Gestion du popup premium avec animations */
-export function popupContact() {
-  // Sélectionner les éléments nécessaires
-  const popupComponent = document.querySelector('[popup="contact"]') as HTMLElement;
-  const popupWrapper = document.querySelector('.contact_cards') as HTMLElement;
-  const popupBackground = document.querySelector('.contact_background-close') as HTMLElement;
+import { gsap } from '$utils/gsapSetup';
+
+export function initPopupContact() {
+  const popupComponent = document.querySelector<HTMLElement>('[popup="contact"]');
+  const popupWrapper = document.querySelector<HTMLElement>('.contact_cards');
+  const popupBackground = document.querySelector<HTMLElement>('.contact_background-close');
   const triggers = document.querySelectorAll('[trigger="popup-contact"]');
 
-  if (!popupComponent || !popupWrapper || !popupBackground) {
-    // console.warn('Éléments popup premium non trouvés');
-    return;
+  if (!popupComponent || !popupWrapper || !popupBackground) return;
+
+  function openPopup() {
+    document.body.style.overflow = 'hidden';
+    popupComponent!.style.display = 'flex';
+
+    gsap.set([popupComponent, popupWrapper, popupBackground], { opacity: 0 });
+    gsap.set(popupWrapper, { y: '2rem' });
+
+    gsap.to(popupComponent, { opacity: 1, duration: 0.3, ease: 'power2.out' });
+    gsap.to(popupBackground, { opacity: 1, duration: 0.6, ease: 'power2.out' });
+    gsap.to(popupWrapper, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' });
   }
 
-  // Fonction pour ouvrir le popup
-  function openPopup() {
-    // Empêcher le scroll de la page
-    document.body.style.overflow = 'hidden';
-
-    // Réinitialiser les styles
-    popupComponent.style.display = 'flex';
-    popupComponent.style.opacity = '0';
-    popupWrapper.style.opacity = '0';
-    popupBackground.style.opacity = '0';
-    popupWrapper.style.transform = 'translateY(2rem)';
-
-    // Ajouter les transitions
-    popupComponent.style.transition = 'opacity 0.3s ease-out';
-    popupWrapper.style.transition = 'opacity 0.6s ease-out, transform 0.3s ease-out';
-    popupBackground.style.transition = 'opacity 0.6s ease-out';
-
-    // Déclencher les animations
-    requestAnimationFrame(() => {
-      popupComponent.style.opacity = '1';
-      popupWrapper.style.opacity = '1';
-      popupBackground.style.opacity = '1';
-      popupWrapper.style.transform = 'translateY(0rem)';
+  function closePopup() {
+    gsap.to(popupWrapper, { y: '2rem', opacity: 0, duration: 0.3, ease: 'power2.in' });
+    gsap.to(popupComponent, {
+      opacity: 0,
+      duration: 0.3,
+      ease: 'power2.in',
+      onComplete: () => {
+        popupComponent!.style.display = 'none';
+        document.body.style.overflow = '';
+      },
     });
   }
 
-  // Fonction pour fermer le popup
-  function closePopup() {
-    // Ajouter les transitions de fermeture
-    popupComponent.style.transition = 'opacity 0.3s ease-out';
-    popupWrapper.style.transition = 'transform 0.3s ease-out';
-    popupBackground.style.transition = 'opacity 0.6s ease-out';
-
-    // Déclencher les animations de fermeture
-    popupComponent.style.opacity = '0';
-    popupWrapper.style.transform = 'translateY(0rem)';
-
-    // Masquer complètement le popup après 0.3s
-    setTimeout(() => {
-      popupComponent.style.display = 'none';
-      // Réactiver le scroll de la page
-      document.body.style.overflow = '';
-    }, 300);
-  }
-
-  // Ajouter les événements de clic sur les triggers
   triggers.forEach((trigger) => {
     trigger.addEventListener('click', (e) => {
       e.preventDefault();
@@ -64,9 +40,14 @@ export function popupContact() {
     });
   });
 
-  // Ajouter l'événement de clic sur le background pour fermer
   popupBackground.addEventListener('click', (e) => {
     e.preventDefault();
     closePopup();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && popupComponent.style.display === 'flex') {
+      closePopup();
+    }
   });
 }

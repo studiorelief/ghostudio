@@ -1,21 +1,7 @@
-@import './utils/animations/swiper/swiper-scale-fade.css';
+@import './utils/animations/swiper/swiper.css';
 @import './utils/animations/element/button.css';
-s model-viewer {
-  --poster-color: transparent;
-  --progress-bar-color: transparent;
-}
-
-@media screen and (min-width: 1440px) {
-  .project_pantone-text {
-    font-size: 2rem;
-  }
-}
-
-/* popup contact */
-.form_radio.w-radio:has(.w-form-formradioinput.w--redirected-checked) {
-  outline: 2px solid #ccc;
-}
-
-.w-checkbox.form_radio:has(.w-checkbox-input.w--redirected-checked) {
-  outline: 2px solid #ccc;
-}
+@import './utils/global/opti.css';
+@import './utils/global/form.css';
+@import './utils/global/responsive.css';
+@import './utils/global/rich-text.css';
+@import './utils/animations/element/card-portfolio.css';

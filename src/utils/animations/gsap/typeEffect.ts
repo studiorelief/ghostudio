@@ -1,9 +1,6 @@
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { gsap } from '$utils/gsapSetup';
 
-gsap.registerPlugin(ScrollTrigger);
-
-export function typeEffect() {
+export function initTypeEffect() {
   const textElements = document.querySelectorAll('.project_pantone-text');
 
   textElements.forEach((element) => {

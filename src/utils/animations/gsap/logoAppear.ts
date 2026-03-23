@@ -1,9 +1,6 @@
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { gsap } from '$utils/gsapSetup';
 
-gsap.registerPlugin(ScrollTrigger);
-
-export function logoAppear() {
+export function initLogoAppear() {
   const logoElements = document.querySelectorAll('.project_logo');
 
   logoElements.forEach((element) => {

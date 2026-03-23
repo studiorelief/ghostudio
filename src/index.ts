@@ -1,64 +1,78 @@
 import './index.css';
 
-import { levitate } from '$utils/animations/element/levitate';
+import { animatedCodeBlocks } from '$utils/animations/element/animatedCodeBock';
+import { initLevitate } from '$utils/animations/element/levitate';
 import { initPreloaderAnimation } from '$utils/animations/element/preloader';
-import { scaleUp } from '$utils/animations/element/scaleUp';
-import { slideUp } from '$utils/animations/element/slideUp';
-import { cardAppear } from '$utils/animations/gsap/cardAppear';
+import { initScaleUp } from '$utils/animations/element/scaleUp';
+import { initSlideUp } from '$utils/animations/element/slideUp';
+import { initCardAppear } from '$utils/animations/gsap/cardAppear';
 import { initFooterGhostAnimation } from '$utils/animations/gsap/footerGhost';
-import { ghostAnimation } from '$utils/animations/gsap/ghostAnimation';
-import { haloRotate } from '$utils/animations/gsap/haloRotate';
-import { logoAppear } from '$utils/animations/gsap/logoAppear';
-import { mainBackground } from '$utils/animations/gsap/mainBackground';
-import { typeEffect } from '$utils/animations/gsap/typeEffect';
-import { swiperCrossfade } from '$utils/animations/swiper/swiperCrossfade';
-import { swiperRotation } from '$utils/animations/swiper/swiperRotation';
-import { swiperScaleFade } from '$utils/animations/swiper/swiperScaleFade';
-import { swiperSlideLeft } from '$utils/animations/swiper/swiperSlideLeft';
-import { swiperSlideRight } from '$utils/animations/swiper/swiperSlideRight';
-import { swiperSlideUp } from '$utils/animations/swiper/swiperSlideUp';
+import { initGhostAnimation } from '$utils/animations/gsap/ghostAnimation';
+import { initHaloRotate } from '$utils/animations/gsap/haloRotate';
+import { initLogoAppear } from '$utils/animations/gsap/logoAppear';
+import { logoScroll } from '$utils/animations/gsap/logoScroll';
+import { initLoopOpen } from '$utils/animations/gsap/loopOpen';
+import { initMainBackground } from '$utils/animations/gsap/mainBackground';
+import {
+  initRevealButton,
+  initRevealHeader,
+  initRevealText,
+} from '$utils/animations/gsap/revealText';
+import { initServiceStack } from '$utils/animations/gsap/serviceStack';
+import { initTypeEffect } from '$utils/animations/gsap/typeEffect';
+import { initSwipers } from '$utils/animations/swiper/swiperFactory';
+import { initSwiperPortfolio } from '$utils/animations/swiper/swiperPortfolio';
+import { initSwiperLoop } from '$utils/animations/swiper/swiperSectors';
 import { initMarker } from '$utils/global/marker';
-import { loadModelViewerScript, resetPosition } from '$utils/global/modalviewers';
-import { popupContact } from '$utils/global/popupContact';
+import { initModelViewer, initResetPosition } from '$utils/global/modalviewers';
+import { initNavbarShrink } from '$utils/global/navbar';
+import { initPopupContact } from '$utils/global/popupContact';
+import { initThreeSection } from '$utils/global/threeSection';
 
 window.Webflow ||= [];
 window.Webflow.push(() => {
-  /* 
-  ! Global 
+  /*
+  ! Global
   */
+  initNavbarShrink();
   initMarker();
-  loadModelViewerScript();
-  resetPosition();
+  initThreeSection();
+  initModelViewer();
+  initResetPosition();
 
-  /* 
-  ! Animations 
+  /*
+  ! Animations
   */
 
   /* loader */
   initPreloaderAnimation();
 
   /* global */
-  cardAppear();
-  mainBackground();
+  initCardAppear();
+  initMainBackground();
   initFooterGhostAnimation();
-  popupContact();
+  initPopupContact();
 
   /* swiper */
-  swiperRotation();
-  swiperSlideLeft();
-  swiperSlideRight();
-  swiperCrossfade();
-  swiperSlideUp();
-  swiperScaleFade();
+  initSwipers();
+  initSwiperPortfolio();
+  initSwiperLoop();
 
   /* gsap */
-  ghostAnimation();
-  typeEffect();
-  logoAppear();
+  initServiceStack();
+  initGhostAnimation();
+  initTypeEffect();
+  initLogoAppear();
+  logoScroll();
+  initLoopOpen();
+  initRevealHeader();
+  initRevealButton();
+  initRevealText();
 
   /* element */
-  slideUp();
-  scaleUp();
-  haloRotate();
-  levitate();
+  initSlideUp();
+  initScaleUp();
+  initHaloRotate();
+  initLevitate();
+  animatedCodeBlocks();
 });

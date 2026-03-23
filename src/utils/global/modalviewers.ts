@@ -1,15 +1,15 @@
-export function loadModelViewerScript() {
+export function initModelViewer() {
   return new Promise<void>((resolve, reject) => {
     const script = document.createElement('script');
     script.type = 'module';
-    script.src = 'https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js';
+    script.src = 'https://unpkg.com/@google/model-viewer@3.5.0/dist/model-viewer.min.js';
     script.onload = () => resolve();
     script.onerror = () => reject(new Error('Failed to load model-viewer script'));
     document.head.appendChild(script);
   });
 }
 
-export function resetPosition() {
+export function initResetPosition() {
   const modelViewers = document.querySelectorAll('.glb_coin') as NodeListOf<
     HTMLElement & {
       cameraOrbit: string;

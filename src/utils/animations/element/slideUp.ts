@@ -1,9 +1,6 @@
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { gsap } from '$utils/gsapSetup';
 
-gsap.registerPlugin(ScrollTrigger);
-
-export function slideUp() {
+export function initSlideUp() {
   const elements = document.querySelectorAll('[slideup]');
 
   elements.forEach((element) => {

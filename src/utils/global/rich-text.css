@@ -1,0 +1,40 @@
+.w-richtext .w-embed {
+  border-radius: 0.75rem;
+  overflow: hidden;
+  margin-bottom: 7.5rem;
+}
+
+.w-richtext figure.w-richtext-align-fullwidth > div {
+  width: 100%;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  margin-bottom: 7.5rem;
+}
+
+.w-richtext .w-richtext-align-floatright {
+  width: calc(50% - 1rem) !important;
+  margin-left: 1rem !important;
+  margin-right: auto !important;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  margin-bottom: 7.5rem;
+}
+
+.w-richtext .w-richtext-align-floatleft {
+  width: calc(50% - 1rem) !important;
+  margin-right: 1rem !important;
+  margin-left: auto !important;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  margin-bottom: 7.5rem;
+}
+
+@media (max-width: 766px) {
+  .w-richtext .w-richtext-align-floatright,
+  .w-richtext .w-richtext-align-floatleft {
+    width: 100% !important;
+  }
+  .w-richtext figure {
+    max-width: 100%;
+  }
+}
