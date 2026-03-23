@@ -1,7 +1,4 @@
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
+import { gsap, ScrollTrigger } from '$utils/gsapSetup';
 
 type SectionConfig = {
   selector: string;
@@ -20,9 +17,11 @@ const sections: SectionConfig[] = [
   { selector: '.section_footer', background: '#0D0D0D' },
 ];
 
-export function mainBackground(targetSelector = '.section_background') {
+export function initMainBackground(targetSelector = '.section_background') {
   const target = document.querySelector<HTMLElement>(targetSelector);
   if (!target) return;
+
+  gsap.to('.section_project', { opacity: 1, duration: 0.5, ease: 'power2.out' });
 
   sections.forEach((section) => {
     const el = document.querySelector(section.selector);

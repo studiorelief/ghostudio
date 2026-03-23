@@ -1,3 +1,5 @@
+/* scale fade */
+
 .swiper-slide.is-scale-fade.swiper-slide-visible.swiper-slide-fully-visible.swiper-slide-active
   .project_image {
   scale: 1;
@@ -10,4 +12,15 @@
   transition:
     scale 0.5s ease-in-out,
     opacity 0.5s ease-in-out;
+}
+
+/* is loop – marquee */
+.swiper.is-loop {
+  overflow: hidden;
+}
+
+.swiper.is-loop .swiper-slide {
+  width: auto !important;
+  flex-shrink: 0;
+  display: flex;
 }

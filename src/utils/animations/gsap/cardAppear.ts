@@ -1,9 +1,6 @@
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { gsap } from '$utils/gsapSetup';
 
-gsap.registerPlugin(ScrollTrigger);
-
-export function cardAppear() {
+export function initCardAppear() {
   const projectCells = document.querySelectorAll('.project_cell');
 
   if (!projectCells.length) return;

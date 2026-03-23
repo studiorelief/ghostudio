@@ -3,11 +3,7 @@
  * Handles first-time visitor detection and smooth loading transitions
  */
 
-import { gsap } from 'gsap';
-import { CustomEase } from 'gsap/CustomEase';
-
-// Register the CustomEase plugin
-gsap.registerPlugin(CustomEase);
+import { CustomEase, gsap } from '$utils/gsapSetup';
 
 /**
  * Initialize the preloader animation with floating ghost and mouse tracking
@@ -31,8 +27,8 @@ export function initPreloaderAnimation(): void {
   // Initialize all animations
   animateFloatingGhost();
   animateGhostFades();
-  animateCounterAndProgress();
-  setupMouseTracking(ghostWrapper);
+  const stopMouseTracking = setupMouseTracking(ghostWrapper);
+  animateCounterAndProgress(stopMouseTracking);
 }
 
 /**
@@ -113,12 +109,12 @@ function animateGhostFades(): void {
 /**
  * Animate the counter and progress bar
  */
-function animateCounterAndProgress(): void {
+function animateCounterAndProgress(stopMouseTracking: () => void): void {
   const preloaderNumber = document.querySelector('.preloader_number');
   if (!preloaderNumber) return;
 
   const customEase = 'M0,0 C0.25,0.1 0.25,1 1,1';
-  const loaderDuration = 5; // 10 seconds
+  const loaderDuration = 5;
   const counter = { value: 0 };
   let hasFadedOut = false;
 
@@ -152,6 +148,7 @@ function animateCounterAndProgress(): void {
             if (preloaderComponent) {
               (preloaderComponent as HTMLElement).style.display = 'none';
             }
+            stopMouseTracking();
           },
         });
       },
@@ -179,83 +176,21 @@ function animateCounterAndProgress(): void {
   );
 }
 
-/**
- * Set up mouse tracking for the ghost wrapper
- * @param ghostWrapper - The ghost wrapper element to move
- */
-function setupMouseTracking(ghostWrapper: HTMLElement): void {
-  document.addEventListener('mousemove', (event) => {
-    // Calculate mouse position relative to the center of the viewport
+function setupMouseTracking(ghostWrapper: HTMLElement): () => void {
+  const onMouseMove = (event: MouseEvent) => {
     const mouseX = event.clientX / window.innerWidth - 0.5;
     const mouseY = event.clientY / window.innerHeight - 0.5;
 
-    // Calculate the movement amount (50rem in each direction)
-    const moveX = -mouseX * 50;
-    const moveY = -mouseY * 50;
-
-    // Apply the transformation with smooth transition
-    ghostWrapper.style.transform = `translate(${moveX}rem, ${moveY}rem)`;
-    ghostWrapper.style.transition = 'transform 1s ease-out';
-  });
-}
-
-/**
- * Animate preloader ghost elements with staggered appearance
- * @param selector - CSS selector for the preloader elements
- * @param duration - Duration for each element to appear (in seconds)
- * @param stagger - Time between each element's animation (in seconds)
- */
-export function animatePreloaderGhosts(
-  selector: string = '.my-custom-ghost-wrapper',
-  duration: number = 0.3,
-  stagger: number = 1.5
-): void {
-  // Skip for returning visitors
-  if (sessionStorage.getItem('visited') !== null) {
-    return;
-  }
-
-  const elements = document.querySelectorAll(selector);
-  if (!elements.length) return;
-
-  gsap.fromTo(
-    elements,
-    { opacity: 0, y: 20 },
-    {
-      opacity: 1,
-      y: 0,
-      duration: duration,
-      stagger: stagger,
+    gsap.to(ghostWrapper, {
+      x: `${-mouseX * 50}rem`,
+      y: `${-mouseY * 50}rem`,
+      duration: 1,
       ease: 'power2.out',
-    }
-  );
+      overwrite: true,
+    });
+  };
+
+  document.addEventListener('mousemove', onMouseMove);
+
+  return () => document.removeEventListener('mousemove', onMouseMove);
 }
-
-/**
- * Initialize the default preloader animation
- */
-export const setupDefaultPreloader = (): void => {
-  if (typeof window !== 'undefined') {
-    window.addEventListener('DOMContentLoaded', () => {
-      initPreloaderAnimation();
-    });
-  }
-};
-
-/**
- * Initialize a custom preloader animation
- * @param selector - CSS selector for the preloader elements
- * @param duration - Duration for each element to appear (in seconds)
- * @param stagger - Time between each element's animation (in seconds)
- */
-export const setupCustomPreloader = (
-  selector: string = '.my-custom-ghost-wrapper',
-  duration: number = 0.3,
-  stagger: number = 1.5
-): void => {
-  if (typeof window !== 'undefined') {
-    window.addEventListener('DOMContentLoaded', () => {
-      animatePreloaderGhosts(selector, duration, stagger);
-    });
-  }
-};

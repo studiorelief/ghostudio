@@ -1,0 +1,19 @@
+.home_portfolio_cards-asset-wrapper {
+  transition: transform 0.3s ease-in-out;
+}
+
+.swiper-slide.is-portfolio:hover .home_portfolio_cards-asset-wrapper {
+  transform: scale(1);
+}
+
+.home_portfolio_cards-services-collection-item {
+  transition:
+    opacity 0.3s ease-in-out,
+    transform 0.3s ease-in-out;
+  transform: translateY(1.5rem);
+}
+
+.swiper-slide.is-portfolio:hover .home_portfolio_cards-services-collection-item {
+  opacity: 1;
+  transform: translateY(0rem);
+}

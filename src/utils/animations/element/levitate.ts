@@ -1,4 +1,4 @@
-import { gsap } from 'gsap';
+import { gsap } from '$utils/gsapSetup';
 
 /**
  * Creates a levitation animation for elements with the 'levitate' attribute
@@ -7,7 +7,7 @@ import { gsap } from 'gsap';
  * @param amplitude - The distance to move up and down (in rem)
  * @param duration - The time for a complete cycle (in seconds)
  */
-export function levitate(amplitude: number = 1, duration: number = 2): void {
+export function initLevitate(amplitude: number = 1, duration: number = 2): void {
   const elements = document.querySelectorAll('[levitate]');
 
   if (!elements.length) return;

@@ -1,0 +1,8 @@
+model-viewer {
+  --poster-color: transparent;
+  --progress-bar-color: transparent;
+}
+
+.section_project {
+  opacity: 0;
+}
