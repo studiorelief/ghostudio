@@ -9,6 +9,6 @@
   .w-richtext figure.w-richtext-align-fullwidth > div,
   .w-richtext .w-richtext-align-floatright,
   .w-richtext .w-richtext-align-floatleft {
-    margin-bottom: 3rem;
+    margin-bottom: 3rem !important;
   }
 }
