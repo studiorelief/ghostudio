@@ -17,6 +17,9 @@ importers:
       gsap:
         specifier: ^3.13.0
         version: 3.13.0
+      lottie-web:
+        specifier: ^5.13.0
+        version: 5.13.0
       swiper:
         specifier: ^11.2.6
         version: 11.2.6
@@ -57,9 +60,6 @@ importers:
       eslint-plugin-simple-import-sort:
         specifier: ^12.1.1
         version: 12.1.1(eslint@9.19.0)
-      playwright:
-        specifier: ^1.58.2
-        version: 1.58.2
       prettier:
         specifier: ^3.4.2
         version: 3.4.2
@@ -810,6 +810,9 @@ packages:
   lodash.startcase@4.4.0:
     resolution: {integrity: sha512-+WKqsK294HMSc2jEbNgpHpd0JfIBhp7rEV4aqXWqFr6AlXov+SlcgB1Fv01y2kGe3Gc8nMW7VA0SrGuSkRfIEg==}
 
+  lottie-web@5.13.0:
+    resolution: {integrity: sha512-+gfBXl6sxXMPe8tKQm7qzLnUy5DUPJPKIyRHwtpCpyUEYjHYRJC/5gjUvdkuO2c3JllrPtHXH5UJJK8LRYl5yQ==}
+
   merge2@1.4.1:
     resolution: {integrity: sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg==}
     engines: {node: '>= 8'}
@@ -909,18 +912,8 @@ packages:
     engines: {node: '>=18'}
     hasBin: true
 
-  playwright-core@1.58.2:
-    resolution: {integrity: sha512-yZkEtftgwS8CsfYo7nm0KE8jsvm6i/PTgVtB8DL726wNf6H2IMsDuxCpJj59KDaxCtSnrWan2AeDqM7JBaultg==}
-    engines: {node: '>=18'}
-    hasBin: true
-
   playwright@1.50.1:
     resolution: {integrity: sha512-G8rwsOQJ63XG6BbKj2w5rHeavFjy5zynBA9zsJMMtBoe/Uf757oG12NXz6e6OirF7RCrTVAKFXbLmn1RbL7Qaw==}
-    engines: {node: '>=18'}
-    hasBin: true
-
-  playwright@1.58.2:
-    resolution: {integrity: sha512-vA30H8Nvkq/cPBnNw4Q8TWz1EJyqgpuinBcHET0YVJVFldr8JDNiU9LaWAE1KqSkRYazuaBhTpB5ZzShOezQ6A==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -1877,6 +1870,8 @@ snapshots:
 
   lodash.startcase@4.4.0: {}
 
+  lottie-web@5.13.0: {}
+
   merge2@1.4.1: {}
 
   micromatch@4.0.8:
@@ -1955,17 +1950,9 @@ snapshots:
 
   playwright-core@1.50.1: {}
 
-  playwright-core@1.58.2: {}
-
   playwright@1.50.1:
     dependencies:
       playwright-core: 1.50.1
-    optionalDependencies:
-      fsevents: 2.3.2
-
-  playwright@1.58.2:
-    dependencies:
-      playwright-core: 1.58.2
     optionalDependencies:
       fsevents: 2.3.2
 
