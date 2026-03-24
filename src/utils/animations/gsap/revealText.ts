@@ -41,14 +41,11 @@ export function initRevealButton() {
   elements.forEach((el) => {
     const split = new SplitText(el, { type: 'chars' });
     el.addEventListener('mouseenter', () => {
-      // Blur instant sur tous les chars
-      gsap.set(split.chars, { filter: 'blur(8px)' });
-
-      // Reveal lettre par lettre immédiatement après
       gsap.to(split.chars, {
-        filter: 'blur(0px)',
-        duration: 0.15,
-        ease: 'power2.out',
+        keyframes: [
+          { y: '-0.25rem', duration: 0.15, ease: 'power2.out' },
+          { y: '0rem', duration: 0.15, ease: 'power2.in' },
+        ],
         stagger: 0.025,
         overwrite: true,
       });

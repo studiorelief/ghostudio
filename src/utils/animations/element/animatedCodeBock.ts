@@ -537,6 +537,99 @@ const CODE_BLOCKS: Record<string, string> = {
   requestAnimationFrame(tick);
 })();
 <` + `/script>`,
+
+  boost:
+    `<div id="speed-wrap" style="width:100%;max-width:350px;margin:0 auto;aspect-ratio:350/265;">
+<svg id="speed-svg" viewBox="0 0 350 265" style="width:100%;height:auto;display:block;overflow:visible;"></svg>
+</div>
+<script>
+(function() {
+  var W=350, H=265, CX=175, CY=155, R=95, NEEDLE_LEN=72;
+  var ARC_START_DEG=150, ARC_SPAN=240;
+  var NEEDLE_START_PCT=0.0, NEEDLE_END_PCT=0.72;
+  var SWING_MS=1800, BREATH_DEG=1.2;
+  var TICK_COUNT=40, MAJOR_EVERY=5;
+
+  var BLUE='hsla(232,79%,62%,1)';
+  var PINK='hsla(337,100%,54%,1)';
+  var TICK_DIM='hsla(0,0%,0%,0.12)';
+
+  function easeOutBack(t) { var c=1.5; return 1+(c+1)*Math.pow(t-1,3)+c*Math.pow(t-1,2); }
+  function degToRad(d) { return d*Math.PI/180; }
+
+  var svg = document.getElementById('speed-svg');
+  var ns = 'http://www.w3.org/2000/svg';
+
+  function el(tag, attrs) {
+    var e = document.createElementNS(ns, tag);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    return e;
+  }
+
+  var defs = el('defs', {});
+  var sGrad = el('radialGradient', { id:'sGrad', cx:'40%', cy:'35%' });
+  sGrad.appendChild(el('stop', { offset:'0%', 'stop-color':'hsla(0,0%,75%,1)' }));
+  sGrad.appendChild(el('stop', { offset:'100%', 'stop-color':'hsla(0,0%,35%,1)' }));
+  defs.appendChild(sGrad);
+  var swGrad = el('radialGradient', { id:'sweepGrad', cx:'50%', cy:'50%', r:'50%' });
+  swGrad.appendChild(el('stop', { offset:'0%', 'stop-color':'hsla(232,79%,62%,0.06)' }));
+  swGrad.appendChild(el('stop', { offset:'100%', 'stop-color':'hsla(232,79%,62%,0.02)' }));
+  defs.appendChild(swGrad);
+  svg.appendChild(defs);
+
+  var sweepPath = el('path', { d:'', fill:'url(#sweepGrad)' });
+  svg.appendChild(sweepPath);
+
+  for (var i = 0; i <= TICK_COUNT; i++) {
+    var pct = i / TICK_COUNT;
+    var angleDeg = ARC_START_DEG + pct * ARC_SPAN;
+    var angleRad = degToRad(angleDeg);
+    var isMajor = i % MAJOR_EVERY === 0;
+    var outerR = R;
+    var innerR = isMajor ? R - 16 : R - 8;
+    svg.appendChild(el('line', {
+      x1: CX + innerR * Math.cos(angleRad), y1: CY + innerR * Math.sin(angleRad),
+      x2: CX + outerR * Math.cos(angleRad), y2: CY + outerR * Math.sin(angleRad),
+      stroke: isMajor ? BLUE : TICK_DIM, 'stroke-width': isMajor ? '2.8' : '1', 'stroke-linecap': 'round'
+    }));
+  }
+
+  var needleG = el('g', { transform: 'rotate(' + ARC_START_DEG + ' ' + CX + ' ' + CY + ')' });
+  needleG.appendChild(el('line', { x1:CX, y1:CY, x2:CX+NEEDLE_LEN, y2:CY, stroke:PINK, 'stroke-width':'5', 'stroke-linecap':'round', opacity:'0.15' }));
+  needleG.appendChild(el('line', { x1:CX+8, y1:CY, x2:CX+NEEDLE_LEN, y2:CY, stroke:PINK, 'stroke-width':'3', 'stroke-linecap':'round', opacity:'0.85' }));
+  svg.appendChild(needleG);
+
+  svg.appendChild(el('circle', { cx:CX, cy:CY, r:'14', fill:'url(#sGrad)' }));
+  svg.appendChild(el('circle', { cx:CX-3, cy:CY-4, r:'5', fill:'hsla(0,0%,100%,0.2)' }));
+
+  var start = 0;
+  function tick(now) {
+    if (!start) start = now;
+    var elapsed = now - start;
+    var t = Math.min(elapsed / SWING_MS, 1);
+    var eased = easeOutBack(t);
+    var needlePct = NEEDLE_START_PCT + (NEEDLE_END_PCT - NEEDLE_START_PCT) * eased;
+    if (t >= 1) {
+      var breathT = (elapsed - SWING_MS) / 1000;
+      needlePct += (Math.sin(breathT * 0.5 * Math.PI * 2) * BREATH_DEG) / ARC_SPAN;
+    }
+    var needleDeg = ARC_START_DEG + needlePct * ARC_SPAN;
+    needleG.setAttribute('transform', 'rotate(' + needleDeg + ' ' + CX + ' ' + CY + ')');
+
+    var startRad = degToRad(ARC_START_DEG);
+    var endRad = degToRad(needleDeg);
+    var x1 = CX + R * Math.cos(startRad), y1 = CY + R * Math.sin(startRad);
+    var x2 = CX + R * Math.cos(endRad), y2 = CY + R * Math.sin(endRad);
+    var largeArc = needlePct * ARC_SPAN > 180 ? 1 : 0;
+    sweepPath.setAttribute('d', 'M'+CX+','+CY+' L'+x1+','+y1+' A'+R+','+R+' 0 '+largeArc+' 1 '+x2+','+y2+' Z');
+
+    requestAnimationFrame(tick);
+  }
+
+  start = 0;
+  requestAnimationFrame(tick);
+})();
+<` + `/script>`,
 };
 
 /**
