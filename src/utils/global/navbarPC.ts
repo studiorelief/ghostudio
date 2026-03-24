@@ -10,14 +10,16 @@ const TRIGGER_DELAY = 350; // ms before triggering after sustained scroll
 const EASE_IN_OUT = 'power2.inOut';
 const EASE_OUT = 'power2.out';
 
-export function initNavbarShrink() {
+export function initNavbarShrink(): (() => void) | null {
+  if (window.innerWidth <= 991) return null;
+
   const container = document.querySelector<HTMLElement>('.nav_container');
   const menu = document.querySelector<HTMLElement>('.nav_menu');
   const brand = document.querySelector<HTMLElement>('.nav_brand');
   const feedLink = document.querySelector<HTMLElement>('.nav_menu_link.is-feed');
   const ctaLink = document.querySelector<HTMLElement>('.nav_menu_link.is-cta');
   const navCta = document.querySelector<HTMLElement>('.nav_cta');
-  if (!container || !menu) return;
+  if (!container || !menu) return null;
 
   let isShrunk = false;
   let activeTl: gsap.core.Timeline | null = null;
@@ -99,7 +101,7 @@ export function initNavbarShrink() {
       .to(fullElements, { opacity: 1, duration: FADE_IN, ease: EASE_OUT }, '<');
   }
 
-  ScrollTrigger.create({
+  const st = ScrollTrigger.create({
     start: 'top top',
     end: 'max',
     onUpdate: (self) => {
@@ -117,4 +119,17 @@ export function initNavbarShrink() {
       }
     },
   });
+
+  return () => {
+    if (scrollTimer) clearTimeout(scrollTimer);
+    if (activeTl) activeTl.kill();
+    st.kill();
+    // Reset inline styles
+    gsap.set(container, { clearProps: 'all' });
+    gsap.set(menu, { clearProps: 'all' });
+    if (brand) gsap.set(brand, { clearProps: 'all' });
+    if (feedLink) gsap.set(feedLink, { clearProps: 'all' });
+    if (ctaLink) gsap.set(ctaLink, { clearProps: 'all' });
+    if (navCta) gsap.set(navCta, { clearProps: 'all' });
+  };
 }

@@ -25,7 +25,8 @@ import { initSwiperPortfolio } from '$utils/animations/swiper/swiperPortfolio';
 import { initSwiperLoop } from '$utils/animations/swiper/swiperSectors';
 import { initMarker } from '$utils/global/marker';
 import { initModelViewer, initResetPosition } from '$utils/global/modalviewers';
-import { initNavbarShrink } from '$utils/global/navbar';
+import { initNavbarMobile } from '$utils/global/navbarMobile';
+import { initNavbarShrink } from '$utils/global/navbarPC';
 import { initPopupContact } from '$utils/global/popupContact';
 import { initThreeSection } from '$utils/global/threeSection';
 
@@ -34,7 +35,34 @@ window.Webflow.push(() => {
   /*
   ! Global
   */
-  initNavbarShrink();
+  let destroyNavbarPC = initNavbarShrink();
+  let destroyNavbarMobile = initNavbarMobile();
+  let destroyServiceStack = initServiceStack();
+
+  // Resize handler — reinit responsive modules on breakpoint cross
+  let lastWidth = window.innerWidth;
+  window.addEventListener('resize', () => {
+    const w = window.innerWidth;
+    const wasDesktop = lastWidth > 991;
+    const isDesktop = w > 991;
+    const crossedNav = wasDesktop !== isDesktop;
+    const wasStackable = lastWidth > 768;
+    const isStackable = w > 768;
+    const crossedStack = wasStackable !== isStackable;
+    lastWidth = w;
+
+    if (crossedNav) {
+      destroyNavbarPC?.();
+      destroyNavbarMobile?.();
+      destroyNavbarPC = initNavbarShrink();
+      destroyNavbarMobile = initNavbarMobile();
+    }
+    if (crossedStack) {
+      destroyServiceStack?.();
+      destroyServiceStack = initServiceStack();
+    }
+  });
+
   initMarker();
   initThreeSection();
   initModelViewer();
@@ -59,7 +87,6 @@ window.Webflow.push(() => {
   initSwiperLoop();
 
   /* gsap */
-  initServiceStack();
   initGhostAnimation();
   initTypeEffect();
   initLogoAppear();

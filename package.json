@@ -47,7 +47,6 @@
     "eslint-config-prettier": "^10.0.1",
     "eslint-plugin-prettier": "^5.2.3",
     "eslint-plugin-simple-import-sort": "^12.1.1",
-    "playwright": "^1.58.2",
     "prettier": "^3.4.2",
     "typescript": "^5.7.3",
     "typescript-eslint": "^8.23.0"
@@ -56,6 +55,7 @@
     "@finsweet/ts-utils": "^0.40.0",
     "@marker.io/browser": "^0.20.2",
     "gsap": "^3.13.0",
+    "lottie-web": "^5.13.0",
     "swiper": "^11.2.6"
   },
   "engines": {
