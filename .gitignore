@@ -24,4 +24,7 @@ typings/
 # dotenv environment variables file
 .env
 
+# Test artifacts
+test-results/
+
 # Production files
