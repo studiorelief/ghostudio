@@ -6,7 +6,7 @@ export function initRevealHeader() {
   if (!elements.length) return;
 
   elements.forEach((el) => {
-    const split = new SplitText(el, { type: 'chars' });
+    const split = new SplitText(el, { type: 'words, chars' });
     const { chars } = split;
     const total = chars.length;
 

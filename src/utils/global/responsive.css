@@ -3,3 +3,12 @@
     font-size: 2rem;
   }
 }
+
+@media screen and (max-width: 991px) {
+  .w-richtext .w-embed,
+  .w-richtext figure.w-richtext-align-fullwidth > div,
+  .w-richtext .w-richtext-align-floatright,
+  .w-richtext .w-richtext-align-floatleft {
+    margin-bottom: 3rem;
+  }
+}
