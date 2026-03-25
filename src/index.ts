@@ -23,6 +23,7 @@ import { initTypeEffect } from '$utils/animations/gsap/typeEffect';
 import { initSwipers } from '$utils/animations/swiper/swiperFactory';
 import { initSwiperPortfolio } from '$utils/animations/swiper/swiperPortfolio';
 import { initSwiperLoop } from '$utils/animations/swiper/swiperSectors';
+import { cmsOpti } from '$utils/global/cmsOpti';
 import { initMarker } from '$utils/global/marker';
 import { initModelViewer, initResetPosition } from '$utils/global/modalviewers';
 import { initNavbarMobile } from '$utils/global/navbarMobile';
@@ -63,6 +64,7 @@ window.Webflow.push(() => {
     }
   });
 
+  cmsOpti();
   initMarker();
   initThreeSection();
   initModelViewer();

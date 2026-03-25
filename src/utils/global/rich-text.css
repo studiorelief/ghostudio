@@ -2,6 +2,7 @@
   border-radius: 0.75rem;
   overflow: hidden;
   margin-bottom: 7.5rem;
+  /* width: auto !important; */
 }
 
 .w-richtext figure.w-richtext-align-fullwidth > div {
@@ -12,21 +13,25 @@
 }
 
 .w-richtext .w-richtext-align-floatright {
+  float: right !important;
   width: calc(50% - 1rem) !important;
   margin-left: 1rem !important;
-  margin-right: auto !important;
+  margin-right: 0 !important;
   border-radius: 0.75rem;
   overflow: hidden;
   margin-bottom: 7.5rem;
+  aspect-ratio: 0.785/1;
 }
 
 .w-richtext .w-richtext-align-floatleft {
+  float: left !important;
   width: calc(50% - 1rem) !important;
   margin-right: 1rem !important;
-  margin-left: auto !important;
+  margin-left: 0 !important;
   border-radius: 0.75rem;
   overflow: hidden;
   margin-bottom: 7.5rem;
+  aspect-ratio: 0.785/1;
 }
 
 @media (max-width: 766px) {
